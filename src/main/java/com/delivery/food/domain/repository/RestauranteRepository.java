@@ -1,14 +1,11 @@
 package com.delivery.food.domain.repository;
 
 import com.delivery.food.domain.model.Restaurante;
+import com.delivery.food.infrastructure.repository.RestauranteRepositoryQueries;
+import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 
-import java.util.List;
-
-public interface RestauranteRepository {
-
-    List<Restaurante> listar();
-    Restaurante buscar(Long id);
-    void salvar(Restaurante restaurante);
-    void remover(Restaurante restaurante);
+public interface RestauranteRepository
+        extends CustomJpaRepository<Restaurante, Long>, RestauranteRepositoryQueries,
+        JpaSpecificationExecutor<Restaurante> {
 
 }

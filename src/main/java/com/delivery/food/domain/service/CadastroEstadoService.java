@@ -9,6 +9,8 @@ import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Service
 public class CadastroEstadoService {
 
@@ -16,12 +18,13 @@ public class CadastroEstadoService {
     private EstadoRepository estadoRepository;
 
     public void salvar(Estado estado) {
-        estadoRepository.salvar(estado);
+        estadoRepository.save(estado);
     }
 
     public void excluir(Long estadoId) {
         try {
-            estadoRepository.remover(estadoId);
+            Optional<Estado> estado = estadoRepository.findById(estadoId);
+            estado.ifPresent(value -> estadoRepository.delete(value));
 
         } catch (EmptyResultDataAccessException e) {
             throw new EntidadeNaoEncontradaException(

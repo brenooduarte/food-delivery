@@ -1,7 +1,11 @@
 package com.delivery.food.domain.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Data
 @Entity
@@ -14,11 +18,8 @@ public class Cozinha {
     @Column
     private String nome;
 
-	public Cozinha() {
-	}
-
-	public Cozinha(String nome) {
-		this.nome = nome;
-	}
+    @JsonIgnore
+    @OneToMany(mappedBy = "cozinha")
+    private List<Restaurante> restaurantes = new ArrayList<>();
     
 }
