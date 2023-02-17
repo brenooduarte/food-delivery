@@ -43,6 +43,7 @@ public class Restaurante {
 //    @Column(columnDefinition = "datetime")
 //    private LocalDateTime dataAtualizacao;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "restaurante")
     private List<Produto> produtos = new ArrayList<>();
 
