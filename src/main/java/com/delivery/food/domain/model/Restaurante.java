@@ -43,6 +43,9 @@ public class Restaurante {
 //    @Column(columnDefinition = "datetime")
 //    private LocalDateTime dataAtualizacao;
 
+    @OneToMany(mappedBy = "restaurante")
+    private List<Produto> produtos = new ArrayList<>();
+
     @JsonIgnore
     @ManyToMany
     @JoinTable(name = "restaurante_forma_pagamento",
