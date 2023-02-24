@@ -23,7 +23,7 @@ public class Restaurante {
 
     @Column(name = "taxa_frete", nullable = false)
     private BigDecimal taxaFrete;
-    
+
     @ManyToOne
     @JoinColumn(name = "cozinha_id", nullable = false)
     private Cozinha cozinha;
@@ -31,17 +31,6 @@ public class Restaurante {
     @JsonIgnore
     @Embedded
     private Endereco endereco;
-
-    //TODO resolver esse erro
-//    @JsonIgnore
-//    @CreationTimestamp
-//    @Column(columnDefinition = "datetime", name = "data_cadastro")
-//    private LocalDateTime dataCadastro;
-//
-//    @JsonIgnore
-//    @UpdateTimestamp
-//    @Column(columnDefinition = "datetime")
-//    private LocalDateTime dataAtualizacao;
 
     @JsonIgnore
     @OneToMany(mappedBy = "restaurante")
