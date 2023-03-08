@@ -25,8 +25,8 @@ public class CidadeController {
     private CadastroCidadeService cadastroCidade;
 
     @GetMapping
-    public List<Cidade> listar() {
-        return cidadeRepository.findAll();
+    public ResponseEntity<List<Cidade>> listar() {
+        return new ResponseEntity<List<Cidade>>(cidadeRepository.findAll(), HttpStatus.OK);
     }
 
     @GetMapping("/{cidadeId}")
