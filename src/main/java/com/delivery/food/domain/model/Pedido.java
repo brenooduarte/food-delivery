@@ -1,6 +1,6 @@
 package com.delivery.food.domain.model;
 
-import com.delivery.food.domain.model.enums.StatusPedido;
+import com.delivery.food.domain.enums.StatusPedido;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
