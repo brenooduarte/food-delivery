@@ -21,9 +21,9 @@ public class AuthenticationService {
 
     public AuthenticationResponse register(RegisterRequest request) {
         Usuario user = Usuario.builder()
-                .nome(request.getFirstName())
+                .nome(request.getNome())
                 .email(request.getEmail())
-                .senha(passwordEncoder.encode(request.getPassword()))
+                .senha(passwordEncoder.encode(request.getSenha()))
                 .tipoUsuario(TipoUsuario.USUARIO)
                 .build();
         repository.save(user);
@@ -38,7 +38,7 @@ public class AuthenticationService {
         authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(
                         request.getEmail(),
-                        request.getPassword()
+                        request.getSenha()
                 )
         );
         Usuario user = repository.findByEmail(request.getEmail())
