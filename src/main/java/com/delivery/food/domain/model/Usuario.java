@@ -2,8 +2,7 @@ package com.delivery.food.domain.model;
 
 import com.delivery.food.domain.enums.TipoUsuario;
 import jakarta.persistence.*;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
+import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -13,7 +12,10 @@ import java.util.Collection;
 import java.util.List;
 
 @Entity
+@Builder
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class Usuario implements UserDetails {
 
     @EqualsAndHashCode.Include
