@@ -43,11 +43,14 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
         }
 
         jwt = authHeader.substring(7);
+
         try {
             userEmail = jwtService.extractUsername(jwt);
+
         } catch (InvalidAlgorithmParameterException | NoSuchAlgorithmException e) {
-            throw new RuntimeException(e);
+            throw new RuntimeException(e.getMessage());
         }
+
         if (userEmail != null && SecurityContextHolder.getContext().getAuthentication() == null) {
             UserDetails userDetails = this.userDetailsService.loadUserByUsername(userEmail);
             try {

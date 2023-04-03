@@ -5,10 +5,13 @@ import com.delivery.food.domain.enums.TipoUsuario;
 import com.delivery.food.domain.model.Usuario;
 import com.delivery.food.domain.repository.UsuarioRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -20,6 +23,11 @@ public class AuthenticationService {
     private final AuthenticationManager authenticationManager;
 
     public AuthenticationResponse register(RegisterRequest request) throws Exception {
+        Optional<Usuario> usuario = repository.findByEmail(request.getEmail());
+        if (usuario.isPresent()) {
+            throw new DataIntegrityViolationException("Usuario ja existe");
+        }
+
         Usuario user = Usuario.builder()
                 .nome(request.getNome())
                 .email(request.getEmail())
